@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<title>{% block title %}Add New User!{% endblock %}</title>
+{% block content %}
+
+<div class="row container">
+
+    <div class="div col text-center">
+        <h1>Add User</h1>
+    </div>
+</div>
+
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+<form action="/add-user" method="post">
+    <div class="row container">
+        <div class="div col-6 text-end">
+            <label for="first_name">First Name : </label>
+        </div>
+        <div class="div col">
+            <input type="text" class="input" name="first_name" placeholder="John">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col-6 text-end">
+            <label for="last_name">Last Name : </label>
+        </div>
+        <div class="div col">
+            <input type="text" class="input" name="last_name" placeholder="Smith">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col-6 text-end">
+            <label for="image_url">Image URL : </label>
+        </div>
+        <div class="div col">
+            <input type="text" class="input" name="image_url" placeholder="https://www.webaddress.com/image.jpg">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col text-center">
+            <button type=" button" class="btn btn-success">Save User</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

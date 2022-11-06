@@ -1,0 +1,9 @@
+img{
+    box-shadow: 2px 2px 2px;
+    margin: 2px;
+}
+
+h1{
+    color: darkgreen;
+    text-shadow: 2px 2px 2px;
+}

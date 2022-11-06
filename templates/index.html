@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+<title>{% block title %}Current Users{% endblock %}</title>
+{% block content %}
+
+<div class="div row container">
+    <div class=" div col-12 text-center">
+        <h1>Users</h1>
+    </div>
+</div>
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+{% for user in users%}
+<form action="/users/{{user.id}}/delete" method="post" name="form-{{user.id}}">
+    <div class="div row container text-center">
+        <div class="col">
+            <img src="{{user.image_url}}" alt="{{user.first_name}} {{user.last_name}}" width="35px">
+        </div>
+        <div class="col">
+            <a href="/users/{{user.id}}">
+                {{user.first_name}} {{user.last_name}}
+            </a>
+        </div>
+        <div class="col">
+            <a href="/users/{{user.id}}/edit"><button type="button" class="btn btn-success btn-sm m-1">Edit</button></a>
+        </div>
+        <div class="col">
+            <button class="btn btn-danger btn-sm m-1">Delete</button>
+
+        </div>
+    </div>
+</form>
+{% endfor %}
+<div class="div row container text-center">
+    <div class="col">
+
+
+        <a href="/users/new"><button type="button" class="btn btn-warning btn-sm m-1">Add
+                User</button></a>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

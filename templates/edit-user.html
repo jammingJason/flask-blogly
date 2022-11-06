@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+<title>{% block title %}Edit User!{% endblock %}</title>
+{% block content %}
+
+
+<div class="row container">
+    <div class="div col text-center">
+        <h1>Edit User</h1>
+    </div>
+</div>
+<div class=" col container">
+    <!-- {{new_user}} -->
+</div>
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+<div class="div row container justify-content-center">
+
+
+
+
+</div>
+<form action="/users/{{new_user.id}}/edit" method="post">
+    <div class="row container">
+        <div class="div col text-end">
+            <label for="first_name">First Name : </label>
+        </div>
+        <div class="div col">
+            <input type="text" value="{{new_user.first_name}}" class="input" name="first_name" placeholder="John">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col-6 text-end">
+            <label for="last_name">Last Name : </label>
+        </div>
+        <div class="div col">
+            <input type="text" value="{{new_user.last_name}}" class="input" name="last_name" placeholder="Smith">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col-6 text-end">
+            <label for="image_url">Image URL : </label>
+        </div>
+        <div class="div col">
+            <input type="text" value="{{new_user.image_url}}"" class=" input" name="image_url"
+                placeholder="https://www.webaddress.com/image.jpg">
+        </div>
+    </div>
+    <div class="row container">
+        <div class="div col text-end m-2">
+            <a href="/">
+                <button type="button" class="btn btn-outline-info">Cancel</button>
+            </a>
+        </div>
+        <div class="div col text-left m-2">
+            <button type=" button" class="btn btn-success">Update User</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
