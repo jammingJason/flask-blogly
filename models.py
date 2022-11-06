@@ -29,6 +29,6 @@ class User(db.Model):
                           default='https://thumbs.dreamstime.com/b/woman-natural-beauty-makeup-portrait-fashion-model-touching-face-hands-beautiful-girl-skin-care-treatment-woman-natural-140288618.jpg')
 
 
-def get_user(id):
-    user = db.session.get(id)
-    return user
+# def get_user(id):
+#     user = db.session.get(id)
+#     return user

@@ -6,12 +6,6 @@ from models import User
 
 class TestUsers(TestCase):
 
-    # def setUp(self):
-    #     """Stuff to do before every test."""
-
-    # def tearDown(self):
-    #     """Stuff to do after every test"""
-
     """Examples of unit tests."""
 
     def test_home(self):
