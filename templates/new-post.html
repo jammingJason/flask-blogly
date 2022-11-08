@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+<title>{% block title %}{{user.first_name}}{% endblock %}</title>
+
+{% block content %}
+<div class="div row container">
+    <div class="col text-center">
+        <h1>Add New Post</h1>
+    </div>
+</div>
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+<form action="/users/{{user.id}}/posts/new" method="post">
+    <div class="div row container text-end">
+        <div class="col">
+            Title :
+        </div>
+        <div class=" div col text-start">
+            <input type="text" name="title">
+        </div>
+    </div>
+    <div class="div row container text-end">
+        <div class="col">
+            Content :
+        </div>
+        <div class=" div col text-start">
+            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="div row container text-center">
+        <div class="col">
+            <button type=" button" class="btn btn-success">Add Post</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

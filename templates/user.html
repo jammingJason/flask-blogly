@@ -3,9 +3,6 @@
 
 {% block content %}
 <div class="div row container">
-    <div class=" div col-12 text-center">
-        <h1>{{user.first_name}} {{user.last_name}}</h1>
-    </div>
 </div>
 
 <div class="div row container justify-content-center">
@@ -16,13 +13,12 @@
     {% endfor %}
 </div>
 
-<div class="div row container text-center">
+<div class="div row container text-end">
     <div class="col">
         <img width="100" src="{{user.image_url}}" alt="{{user.first_name}} {{user.last_name}}">
     </div>
-</div>
-<div class="div row container text-center">
-    <div class="col">
+    <div class=" div col text-start">
+        <h1>{{user.first_name}} {{user.last_name}}</h1>
         <form action="/users/{{user.id}}/delete" method="post">
             <a href="/users/{{user.id}}/edit">
                 <button type=" button" class="btn btn-success m-3">Edit {{user.first_name}}</button></a>
@@ -33,10 +29,31 @@
 </div>
 <div class="div row container text-center">
     <div class="col">
-        <a href="/">
-            <button type=" button" class="btn btn-warning m-3">All Users</button>
+        <h3>Posts</h3>
+    </div>
+</div>
+<div class="div row container">
+    <div class="col"></div>
+    <div class="col">
+        <ul>
+            {%for post in user.posts%}
+            <li>{{post.title}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/users/{{user.id}}/posts/new">
+            <button type=" button" class="btn btn-primary m-3">Create New Post</button>
         </a>
-
+    </div>
+</div>
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/">
+            <button type=" button" class="btn btn-warning m-3">Show All Users</button>
+        </a>
     </div>
 </div>
 {% endblock %}

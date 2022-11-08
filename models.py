@@ -1,5 +1,7 @@
 """Models for Blogly."""
 
+# from datetime import datetime
+import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -29,6 +31,21 @@ class User(db.Model):
                           default='https://thumbs.dreamstime.com/b/woman-natural-beauty-makeup-portrait-fashion-model-touching-face-hands-beautiful-girl-skin-care-treatment-woman-natural-140288618.jpg')
 
 
-# def get_user(id):
-#     user = db.session.get(id)
-#     return user
+class Post(db.Model):
+    """ User posts"""
+    __tablename__ = 'posts'
+
+    def __repr__(self):
+        p = self
+        return f"<Post id={p.id}, title=p.title, content=p.content>"
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    title = db.Column(db.String(50),
+                      nullable=False)
+    content = db.Column(db.String(50), nullable=True)
+    created_at = db.Column(db.DateTime, nullable=False,
+                           default=datetime.datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user = db.relationship('User', backref='posts')
