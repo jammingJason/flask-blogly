@@ -3,6 +3,7 @@
 from flask import Flask, request, redirect, render_template
 from models import db, connect_db, User, Post
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///blogly'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -87,7 +88,7 @@ def add_new_post(id):
     """ Handle add form; add post and redirect to the user detail page."""
 
     title = request.form['title']
-    content = request.form['content']
+    content = request.form['content'].strip()
     new_post = Post(title=title, content=content, user_id=id)
     db.session.add(new_post)
     db.session.commit()
@@ -98,7 +99,8 @@ def add_new_post(id):
 @app.route('/posts/<id>')
 def show_post(id):
     """Show a post."""
-    return redirect('/')
+    post = Post.query.get(id)
+    return render_template('post.html', post=post)
 
 # Show buttons to edit and delete the post.
 
@@ -106,16 +108,27 @@ def show_post(id):
 @app.route('/posts/<id>/edit')
 def edit_post(id):
     """Show form to edit a post, and to cancel (back to user page)."""
-    return redirect('/')
+    post = Post.query.get(id)
+    return render_template('edit-post.html', post=post)
 
 
 @app.route('/posts/<id>/edit', methods=['POST'])
 def edit_existing_post(id):
     """Handle editing of a post. Redirect back to the post view."""
-    return redirect('/')
+
+    title = request.form['title']
+    content = request.form['content']
+    post = Post(id=id, title=title, content=content)
+    db.session.merge(post)
+    db.session.commit()
+    return redirect('/posts/'+id)
 
 
 @app.route('/posts/<id>/delete')
 def delete_post(id):
     """Delete the post."""
+
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
     return redirect('/')

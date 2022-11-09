@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-<title>{% block title %}{{user.first_name}}{% endblock %}</title>
+<title>{% block title %}{{post.title}}{% endblock %}</title>
 
 {% block content %}
 <div class="div row container">
     <div class="col text-center">
-        <h1>Add New Post for {{user.first_name}}</h1>
+        <h1>Edit Post for {{post.user.first_name}}</h1>
     </div>
 </div>
 
@@ -16,13 +16,13 @@
     {% endfor %}
 </div>
 
-<form action="/users/{{user.id}}/posts/new" method="post">
+<form action="/posts/{{post.id}}/edit" method="post">
     <div class="div row container text-end">
         <div class="col">
             Title :
         </div>
         <div class=" div col text-start">
-            <input type="text" name="title">
+            <input type="text" name="title" value="{{post.title}}">
         </div>
     </div>
     <div class="div row container text-end">
@@ -30,12 +30,12 @@
             Content :
         </div>
         <div class=" div col text-start">
-            <textarea name="content" id="content" cols="30" rows="10"></textarea>
+            <textarea name="content" id="content" cols="30" rows="10">{{post.content}}</textarea>
         </div>
     </div>
     <div class="div row container text-center">
         <div class="col">
-            <button type=" button" class="btn btn-success">Add Post</button>
+            <button class="btn btn-success">Submit Post</button>
         </div>
     </div>
 </form>

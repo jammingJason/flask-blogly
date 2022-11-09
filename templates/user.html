@@ -19,9 +19,10 @@
     </div>
     <div class=" div col text-start">
         <h1>{{user.first_name}} {{user.last_name}}</h1>
+        <a href="/users/{{user.id}}/edit">
+            <button type="button" class="btn btn-success m-3">Edit {{user.first_name}}</button>
+        </a>
         <form action="/users/{{user.id}}/delete" method="post">
-            <a href="/users/{{user.id}}/edit">
-                <button type=" button" class="btn btn-success m-3">Edit {{user.first_name}}</button></a>
             <button class="btn btn-danger m-3">Delete
                 {{user.first_name}}</button>
         </form>
@@ -37,7 +38,7 @@
     <div class="col">
         <ul>
             {%for post in user.posts%}
-            <li>{{post.title}}</li>
+            <li><a href="/posts/{{post.id}}">{{post.title}}</a></li>
             {% endfor %}
         </ul>
     </div>

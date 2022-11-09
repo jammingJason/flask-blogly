@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+<title>{% block title %}{{post.title}}{% endblock %}</title>
+
+{% block content %}
+
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="div row container text-center">
+    <div class="col">
+        <h1>Post</h1>
+    </div>
+</div>
+<div class="div row container">
+    <div class="col-5"></div>
+    <div class="col">
+        <h3>{{post.title}}</h3>
+    </div>
+</div>
+
+<div class="div row container">
+    <div class="col-5"></div>
+    <div class="col">
+        {{post.content}}
+    </div>
+</div>
+
+<div class="div row container">
+    <div class="col text-center">
+        <div class="btn-group m-2" role="group" aria-label="Basic example">
+
+            <button onclick="location.href='/users/{{post.user.id}}'" type="button"
+                class="btn btn-secondary">Cancel</button>
+            <button onclick="location.href='/posts/{{post.id}}/edit'" type="button"
+                class="btn btn-primary">Edit</button>
+            <button onclick="location.href='/posts/{{post.id}}/delete'" type="button"
+                class="btn btn-danger">Delete</button>
+
+        </div>
+    </div>
+</div>
+
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/">
+            <button type=" button" class="btn btn-warning m-3">Show All Users</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
