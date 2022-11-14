@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+<title>{% block title %}All Tags{% endblock %}</title>
+
+{% block content %}
+<div class="div row container">
+</div>
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="div row container text-center">
+    <div class="col">
+        <h1>Tags</h1>
+    </div>
+</div>
+<div class="div row container">
+    <div class="col-5">
+    </div>
+    <div class="col">
+        <ul>
+
+            {% for tag in tags %}
+            <li>
+                <form action="tags/{{tag.id}}/delete" method="post" id="form{{tag.id}}">
+                    <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+                    <a href="tags/{{tag.id}}/edit"><span class="badge badge-pill badge-warning">Edit</span></a>
+                    <a href="javascript:submitForm('form{{tag.id}}')"><span
+                            class="badge badge-pill badge-danger">Delete</span>
+                    </a>
+                </form>
+            </li>
+            {% endfor %}
+
+        </ul>
+    </div>
+</div>
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/tags/new">
+            <button type=" button" class="btn btn-primary m-3">Create New Tag</button>
+        </a>
+    </div>
+</div>
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/">
+            <button type=" button" class="btn btn-warning m-3">Show All Users</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

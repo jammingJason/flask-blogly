@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+<title>{% block title %}Add New Tag{% endblock %}</title>
+
+{% block content %}
+
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="div row container text-center">
+    <div class="col">
+        <h1>{{tag.name}}</h1>
+    </div>
+</div>
+<form action="/tags/{{tag.id}}/edit" method="post">
+    <div class="div row container">
+        <div class="col text-end">
+            Posts :
+        </div>
+        <div class="col">
+            <ul>
+                {% for post in posts %}
+                <a href="/posts/{{post.id}}">
+                    <li>
+                        {{post.title}}
+                    </li>
+                </a>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+
+    <div class="div row container text-center">
+        <div class="col">
+            <button class="btn btn-warning m-3">Update Tag</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

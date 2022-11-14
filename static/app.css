@@ -7,3 +7,16 @@ h1{
     color: darkgreen;
     text-shadow: 2px 2px 2px;
 }
+
+.badge-primary{
+    background-color: blue;
+}
+.badge-success{
+    background-color: darkgreen;
+}
+.badge-danger{
+    background-color: red;
+}
+.badge-warning{
+    background-color: rgb(251, 224, 69);
+}

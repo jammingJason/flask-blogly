@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+<title>{% block title %}All Tags{% endblock %}</title>
+
+{% block content %}
+
+
+<div class="div row container">
+</div>
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="div row container text-center">
+    <div class="col">
+        <h1>Tags</h1>
+    </div>
+</div>
+<div class="div row container">
+    <div class="col-5">
+    </div>
+    <div class="col">
+        {% for tag in tags%}
+        <input type="checkbox" value="{{tag.id}}" id="{{tag.id}}" {%for pt in posts_tags%} {% if pt.tag_id==tag.id%}
+            checked {%endif%} {%endfor%}> {{tag.name}}
+        <br>
+        {% endfor %}
+    </div>
+</div>
+<div class=" div row container">
+    <div class="col-5">
+
+    </div>
+    <div class="col">
+
+    </div>
+</div>
+<div class="div row container text-center">
+    <div class="col">
+        <a href="/tags/new">
+            <button type=" button" class="btn btn-primary m-3">Add Tags</button>
+        </a>
+    </div>
+</div>
+
+
+
+{% endblock %}

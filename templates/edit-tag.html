@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<title>{% block title %}Edit Tag{% endblock %}</title>
+
+{% block content %}
+
+
+<div class="div row container justify-content-center">
+    {% for msg in get_flashed_messages() %}
+    <div class="badge badge-pill badge-danger col-6" id="errMsg">
+        {{msg}}
+    </div>
+    {% endfor %}
+</div>
+
+<div class="div row container text-center">
+    <div class="col">
+        <h1>Edit Tag</h1>
+    </div>
+</div>
+<form action="/tags/{{tag.id}}/edit" method="post">
+    <div class="div row container">
+        <div class="col text-end">
+            Tag Name :
+        </div>
+        <div class="col">
+            <input type="text" name="name" value="{{tag.name}}">
+        </div>
+    </div>
+
+    <div class="div row container text-center">
+        <div class="col">
+            <button class="btn btn-warning m-3">Edit Tag</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

@@ -33,6 +33,26 @@
             <textarea name="content" id="content" cols="30" rows="10">{{post.content}}</textarea>
         </div>
     </div>
+    <div class="div row container text-end">
+        <div class="col">
+            Tags :
+        </div>
+        <div class=" div col text-start">
+            {% for tag in tags%}
+            <input type="checkbox" onclick="checkBoxes({{tag.id}}, {{post.id}});" name="tags" value="{{tag.id}}"
+                id="{{tag.id}}" {%for pt in posts_tags%} {% if pt.tag_id==tag.id%} checked {%endif%} {%endfor%}>
+            {{tag.name}}
+            <br>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="div row container text-center">
+        <div class="col">
+            <a href="/tags/new">
+                <button type="button" class="btn btn-warning m-2">Create New Tag</button>
+            </a>
+        </div>
+    </div>
     <div class="div row container text-center">
         <div class="col">
             <button class="btn btn-success">Submit Post</button>
