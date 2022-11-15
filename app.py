@@ -80,7 +80,8 @@ def add_new_user():
 def add_post(id):
     """Show form to add a post for that user."""
     user = User.query.get(id)
-    return render_template('new-post.html', user=user)
+    tags = Tag.query.all()
+    return render_template('new-post.html', user=user, tags=tags)
 
 
 @app.route('/users/<id>/posts/new', methods=['POST'])
@@ -93,6 +94,11 @@ def add_new_post(id):
     db.session.add(new_post)
     db.session.commit()
     user = User.query.get(id)
+    tags = request.form['tags']
+    for tag in tags:
+        new_pt = PostTag(post_id=new_post.id, tag_id=tag)
+        db.session.add(new_pt)
+        db.session.commit()
     return render_template('user.html', user=user)
 
 
@@ -104,7 +110,12 @@ def show_post(id):
 
     return render_template('post.html', post=post, created=created.strftime("%c"))
 
-# Show buttons to edit and delete the post.
+
+@app.route('/posts/all')
+def show_all_posts():
+    posts = Post.query.all()
+    tags = Tag.query.all()
+    return render_template('all-posts.html', posts=posts, tags=tags)
 
 
 @app.route('/posts/<id>/edit')

@@ -20,3 +20,6 @@ h1{
 .badge-warning{
     background-color: rgb(251, 224, 69);
 }
+a{
+    color: darkgreen;
+}

@@ -41,7 +41,7 @@
             {% for tag in tags%}
             <input type="checkbox" onclick="checkBoxes({{tag.id}}, {{post.id}});" name="tags" value="{{tag.id}}"
                 id="{{tag.id}}" {%for pt in posts_tags%} {% if pt.tag_id==tag.id%} checked {%endif%} {%endfor%}>
-            {{tag.name}}
+            <a href="/tags/{{tag.id}}/edit">{{tag.name}}</a>
             <br>
             {% endfor %}
         </div>
